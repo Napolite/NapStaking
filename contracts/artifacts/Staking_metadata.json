@@ -24,6 +24,38 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "_balance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "balance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "amount",
 						"type": "uint256"
@@ -68,25 +100,6 @@
 						"internalType": "contract IERC20",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "stakeBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -160,11 +173,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0xb956aa475ab8c1d14449c0fdac18318babd2edcfd63d81b35d0d46bde50cca87",
+			"keccak256": "0x8689dd2a34baf5ced14234327a745bd91cd0bd5dc6d0f3386793771a320b5b88",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9fabd91ea121c39fbb727407b615417f0d9a4163c32991d7ea5c731c35b23e48",
-				"dweb:/ipfs/QmYGDrfbz7J8yRsuY4sJnCFEjxe6tTgvq3qGTuDw5DuDKZ"
+				"bzz-raw://df5da37aef1ea725dff2e0c604228a748876ddd7c026cbeae04b703abc4847a0",
+				"dweb:/ipfs/QmPhP4HdvEqTyqcEAouxfyZU7q5QCvYtCypju9w2nYeWoY"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {

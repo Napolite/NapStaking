@@ -29,7 +29,7 @@ contract Staking{
     uint public duration; // stake duration
     uint public rate; //stake rate
 
-    mapping (address => uint) public stakeBalance;
+    mapping (address => uint) public _balance;
 
     //modifiers
 
@@ -39,13 +39,18 @@ contract Staking{
         rewardsToken = IERC20(_rewardsToken);
     }
 
-    function depositStake (uint amount) public {
+    function depositStake (uint amount) external {
         require(stakingToken.balanceOf(msg.sender) >= amount, "Not enough tokens for stake");
         require(stakingToken.transferFrom(msg.sender, address(this), amount),"Failed to stake token");
 
-        stakeBalance[msg.sender] = stakeBalance[msg.sender].add(amount);
+        _balance[msg.sender] = _balance[msg.sender].add(amount);
         totalStake = totalStake.add(amount);
     }
+    function balance() external view returns (uint256){
+        return _balance[msg.sender];
+    }
 
+    // function setDuration(uint duration) public
+ 
     
 }
