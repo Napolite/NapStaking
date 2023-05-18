@@ -22,6 +22,19 @@
 				"type": "constructor"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositStake",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "duration",
 				"outputs": [
@@ -94,7 +107,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "totalRewardsGenerated",
+				"name": "totalRewardsPaid",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -107,7 +120,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "totalStakeSupply",
+				"name": "totalStake",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -147,11 +160,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0x77a8d5c205012a54c367c4f63d60237395edb91bedfe55d3b716cb8f17004109",
+			"keccak256": "0xb956aa475ab8c1d14449c0fdac18318babd2edcfd63d81b35d0d46bde50cca87",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a66549a23866dc4344effbe9971f2d260642f4258cfa25891091a1cae30fbcac",
-				"dweb:/ipfs/QmZ4MFTiHJefzKXLrdcZiZMFPTMzaA6skGnhhpGXwSQPiw"
+				"bzz-raw://9fabd91ea121c39fbb727407b615417f0d9a4163c32991d7ea5c731c35b23e48",
+				"dweb:/ipfs/QmYGDrfbz7J8yRsuY4sJnCFEjxe6tTgvq3qGTuDw5DuDKZ"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {
@@ -160,6 +173,14 @@
 			"urls": [
 				"bzz-raw://3dac621d015a68a5251b1e5d41dda0faf252699bf6e8bcf46a958b29964d9dd1",
 				"dweb:/ipfs/QmP9axjgZv4cezAhALoTemM62sdLtMDJ9MGTxECnNwHgSJ"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol": {
+			"keccak256": "0xa80cb30fccbba7c8ff72ac82cc898576a78d4c3031e85676840048f3fe195f5d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://22fff2b2370631317e0e4bf36eabb136e96f1db5d5993c61e13b27d7615b504f",
+				"dweb:/ipfs/QmfTW395az3LUhe3Gm5BUCwkaj9Sk1fURZKvHL2XzDHYQk"
 			]
 		}
 	},
