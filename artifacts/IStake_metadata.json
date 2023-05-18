@@ -1,10 +1,24 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.20+commit.a1b79de6"
 	},
 	"language": "Solidity",
 	"output": {
-		"abi": [],
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositStake",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
 		"devdoc": {
 			"kind": "dev",
 			"methods": {},
@@ -20,7 +34,7 @@
 		"compilationTarget": {
 			"staking.sol": "IStake"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -32,12 +46,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"staking.sol": {
-			"keccak256": "0x174c936845cd6eb9759b1658f59f275c8c9c786308c8cf890c5314994acd9275",
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x00c839ff53d07d19db2e7cfa1e5133f9ee90a8d64b0e2e57f50446a2d1a3a0e0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://945b18e27711f34fd687f04dce3e5babeb26a7a70eda81b139cd9e222c46b6d9",
-				"dweb:/ipfs/QmUyR9N6gmdaeUJFPAqhDsyrXRCLuiVqhpYE3H9d4X4YCK"
+				"bzz-raw://3dac621d015a68a5251b1e5d41dda0faf252699bf6e8bcf46a958b29964d9dd1",
+				"dweb:/ipfs/QmP9axjgZv4cezAhALoTemM62sdLtMDJ9MGTxECnNwHgSJ"
+			]
+		},
+		"staking.sol": {
+			"keccak256": "0xab440b492ddc900343b414e90f3e282cd5db3d9f334ec58b4b0e7f5ca0e1d3e3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a5cd7e664746956cdcb41b0d249f704db864bbb1bb95f728272e6f3d252f2f92",
+				"dweb:/ipfs/QmaWpH99QoXQ8YfkexqKjacfPRPn9Gb4MNS8r9Pw9Ztzyr"
 			]
 		}
 	},
