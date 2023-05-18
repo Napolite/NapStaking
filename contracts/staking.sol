@@ -27,13 +27,16 @@ contract Staking{
     uint public totalRewardsPaid;
     
     uint public duration; // stake duration
+    uint public finishAt;
+    uint public updatedAt;
+    
     uint public rate; //stake rate
 
     mapping (address => uint) public _balance;
 
     //modifiers
 
-    //contract methods
+    // contract methods
     constructor(address _stakeToken, address _rewardsToken){
         stakingToken = IERC20(_stakeToken);
         rewardsToken = IERC20(_rewardsToken);
@@ -50,7 +53,13 @@ contract Staking{
         return _balance[msg.sender];
     }
 
-    // function setDuration(uint duration) public
+    function setDuration(uint256 _duration) external{
+        require(finishAt < block.timestamp, "can't set date to a previous timestamp");
+
+        duration = _duration;
+        finishAt = finishAt.add(_duration);
+        updatedAt = block.timestamp;
+    }
  
     
 }
