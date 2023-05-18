@@ -29,7 +29,7 @@ contract Staking{
     uint public duration; // stake duration
     uint public finishAt;
     uint public updatedAt;
-    
+
     uint public rate; //stake rate
 
     mapping (address => uint) public _balance;
@@ -59,6 +59,10 @@ contract Staking{
         duration = _duration;
         finishAt = finishAt.add(_duration);
         updatedAt = block.timestamp;
+    }
+
+    function getDuration() view external returns(uint256){
+        return duration;
     }
  
     
