@@ -64,6 +64,10 @@ contract Staking{
     function getDuration() view external returns(uint256){
         return duration;
     }
+
+    function setRewardRate(uint256) external{
+        
+    }
  
     
 }
