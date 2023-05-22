@@ -72,11 +72,13 @@ contract Staking{
         rate = _rate;
     }
 
-    function calculateRewards() view external returns(uint256){
+    function earned() view external returns(uint256){
         require(_balance[msg.sender] > 0, "You have not staked any tokens");
 
         return _balance[msg.sender] * (rate/100) * (block.timestamp - updatedAt );
     }
+
+    // function calculaeRewardBalance
  
     
 }
