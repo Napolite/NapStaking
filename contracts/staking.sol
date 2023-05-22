@@ -33,9 +33,10 @@ contract Staking{
     uint public rate; //stake rate
 
     mapping (address => uint) public _balance;
-    mapping (address => uint) public _rewards;
+    mapping (address => uint) private _rewardsWithdrawals;
 
     //modifiers
+
 
     // contract methods
     constructor(address _stakeToken, address _rewardsToken){
@@ -72,13 +73,18 @@ contract Staking{
         rate = _rate;
     }
 
-    function earned() view external returns(uint256){
+    function earned() view public returns(uint256){
         require(_balance[msg.sender] > 0, "You have not staked any tokens");
 
         return _balance[msg.sender] * (rate/100) * (block.timestamp - updatedAt );
     }
 
-    // function calculaeRewardBalance
+    function withdrawReward(uint256 _amount) external{
+        require(earned() > 0, "You have not earned any rewards");
+        require(earned() - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
+        require(rewardsToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
+        _rewardsWithdrawals[msg.sender] += _amount;
+    }
  
     
 }
