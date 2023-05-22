@@ -24,7 +24,7 @@ contract Staking{
     IERC20 public rewardsToken;
 
     uint public totalStake;
-    uint public totalRewardsPaid;
+    uint public totalStakeRewards;
     
     uint public duration; // stake duration
     uint public finishAt;
@@ -33,6 +33,7 @@ contract Staking{
     uint public rate; //stake rate
 
     mapping (address => uint) public _balance;
+    mapping (address => uint) public _rewards;
 
     //modifiers
 
@@ -65,13 +66,13 @@ contract Staking{
         return duration;
     }
 
-    // function setRewardRate(uint256 _rate) external{
-    //     require(finishAt < block.timestamp, "Staking still in progress");
+    function setRewardRate(uint256 _rate) external{
+        require(finishAt < block.timestamp, "Staking still in progress");
 
-    //     rate = _rate;
-    // }
+        rate = _rate;
+    }
 
-    function calculateReward() view external returns(uint256){
+    function calculateRewards() view external returns(uint256){
         require(_balance[msg.sender] > 0, "You have not staked any tokens");
 
         return _balance[msg.sender] * (rate/100) * (block.timestamp - updatedAt );
