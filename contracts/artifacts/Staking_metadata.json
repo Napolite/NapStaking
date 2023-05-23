@@ -59,6 +59,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "calculateRewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -256,11 +269,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0x915a78a6948cfd77474cf720025d0caf83d2809a91c5e0c6024241ab422276f2",
+			"keccak256": "0x25456db36f46f6c85ba964c162c4fcf259ce348736e1a5bbc6032285d6537ac9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5048e676b7555a843740fde1332e54c4964f974e1b9ec5dcd127786f7fc78453",
-				"dweb:/ipfs/QmXGDgc8JJjqXUZpwpSV9LwPD7HJ1ZLkWcHiRUdBvYFz69"
+				"bzz-raw://2ca5d8874f93d2f6454c87f8078f40045fb7678e52b1e2bacf3e24976f9fc4c5",
+				"dweb:/ipfs/QmZgBGf1y1g1ZwMHb7wF2Uz7Jy9dB9on9U9w2DfsZLsTvN"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {

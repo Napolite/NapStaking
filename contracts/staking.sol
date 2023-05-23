@@ -86,6 +86,12 @@ contract Staking{
         return (_balance[msg.sender]["amount"] * (rate/100) * (block.timestamp - _balance[msg.sender]["updatedAt"]));
     }
 
+    function calculateRewards() view public returns(uint256){
+        require(_balance[msg.sender]["amount"] > 0, "You have not staked any tokens");
+
+        return earned() + accBeforeUpdate[msg.sender];
+    }
+
     function withdrawReward(uint256 _amount) external{
         // uint total = 
         require(earned() + accBeforeUpdate[msg.sender] > 0 && _amount > 0, "You have not earned any rewards");
