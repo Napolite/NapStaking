@@ -32,6 +32,7 @@ contract Staking{
 
     uint public rate; //stake rate
 
+
     mapping (address => mapping(string => uint256)) public _balance;
     mapping (address => uint) private _rewardsWithdrawals;
     mapping (address => uint) private accBeforeUpdate;
@@ -46,6 +47,7 @@ contract Staking{
     }
 
     function depositStake (uint amount) external {
+        require(_balance[msg.sender]["lockStakes"] != 1, "This user canno longer deposit for this staking period");
         require(stakingToken.balanceOf(msg.sender) >= amount, "Not enough tokens for stake");
         require(stakingToken.transferFrom(msg.sender, address(this), amount),"Failed to stake token");
         
@@ -98,6 +100,12 @@ contract Staking{
         require(total - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
         require(rewardsToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
         _rewardsWithdrawals[msg.sender] += _amount;
+    }
+
+    function lockStakes() external{
+        require(_balance[msg.sender]["lockStakes"] != 1, "Stakes have been locked");
+
+        _balance[msg.sender]["lockStakes"] = 1;
     }
  
     
