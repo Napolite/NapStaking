@@ -93,9 +93,9 @@ contract Staking{
     }
 
     function withdrawReward(uint256 _amount) external{
-        // uint total = 
-        require(earned() + accBeforeUpdate[msg.sender] > 0 && _amount > 0, "You have not earned any rewards");
-        require(earned() +accBeforeUpdate[msg.sender] - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
+        uint total = calculateRewards();
+        require(total > 0 && _amount > 0, "You have not earned any rewards");
+        require(total - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
         require(rewardsToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
         _rewardsWithdrawals[msg.sender] += _amount;
     }
