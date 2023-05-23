@@ -32,8 +32,9 @@ contract Staking{
 
     uint public rate; //stake rate
 
-    mapping (address => uint) public _balance;
+    mapping (address => mapping(string => uint256)) public _balance;
     mapping (address => uint) private _rewardsWithdrawals;
+    mapping (address => uint) private accBeforeUpdate;
 
     //modifiers
 
@@ -47,19 +48,25 @@ contract Staking{
     function depositStake (uint amount) external {
         require(stakingToken.balanceOf(msg.sender) >= amount, "Not enough tokens for stake");
         require(stakingToken.transferFrom(msg.sender, address(this), amount),"Failed to stake token");
-
-        _balance[msg.sender] = _balance[msg.sender].add(amount);
+        
+        _balance[msg.sender]["amount"] = _balance[msg.sender]["amount"].add(amount);
+        if (_balance[msg.sender]["updatedAt"] == 0) {
+        _balance[msg.sender]["updatedAt"]= block.timestamp;
+        }else{
+            accBeforeUpdate[msg.sender] += earned();
+            _balance[msg.sender]["updatedAt"]= block.timestamp;
+        }
         totalStake = totalStake.add(amount);
     }
     function balance() external view returns (uint256){
-        return _balance[msg.sender];
+        return _balance[msg.sender]["amount"];
     }
 
     function setDuration(uint256 _duration) external{
         require(finishAt < block.timestamp, "can't set date to a previous timestamp");
 
         duration = _duration;
-        finishAt = finishAt.add(_duration);
+        finishAt = _duration.add(block.timestamp);
         updatedAt = block.timestamp;
     }
 
@@ -74,13 +81,13 @@ contract Staking{
     }
 
     function earned() view public returns(uint256){
-        require(_balance[msg.sender] > 0, "You have not staked any tokens");
+        require(_balance[msg.sender]["amount"] > 0, "You have not staked any tokens");
 
-        return _balance[msg.sender] * (rate/100) * (block.timestamp - updatedAt );
+        return (_balance[msg.sender]["amount"] * (rate/100) * (block.timestamp - _balance[msg.sender]["updatedAt"])) + accBeforeUpdate[msg.sender];
     }
 
     function withdrawReward(uint256 _amount) external{
-        require(earned() > 0, "You have not earned any rewards");
+        require(earned() > 0 && _amount > 0, "You have not earned any rewards");
         require(earned() - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
         require(rewardsToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
         _rewardsWithdrawals[msg.sender] += _amount;
