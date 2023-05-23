@@ -80,15 +80,16 @@ contract Staking{
         rate = _rate;
     }
 
-    function earned() view public returns(uint256){
+    function earned() view private returns(uint256){
         require(_balance[msg.sender]["amount"] > 0, "You have not staked any tokens");
 
-        return (_balance[msg.sender]["amount"] * (rate/100) * (block.timestamp - _balance[msg.sender]["updatedAt"])) + accBeforeUpdate[msg.sender];
+        return (_balance[msg.sender]["amount"] * (rate/100) * (block.timestamp - _balance[msg.sender]["updatedAt"]));
     }
 
     function withdrawReward(uint256 _amount) external{
-        require(earned() > 0 && _amount > 0, "You have not earned any rewards");
-        require(earned() - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
+        // uint total = 
+        require(earned() + accBeforeUpdate[msg.sender] > 0 && _amount > 0, "You have not earned any rewards");
+        require(earned() +accBeforeUpdate[msg.sender] - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
         require(rewardsToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
         _rewardsWithdrawals[msg.sender] += _amount;
     }
