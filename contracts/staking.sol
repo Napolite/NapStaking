@@ -8,6 +8,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 contract Staking{
     using SafeMath for uint256;
     using SafeMath for uint;
+    
     IERC20 public stakingToken;
     IERC20 public rewardsToken;
 

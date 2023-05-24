@@ -296,11 +296,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0x011ec6b5320d804fd4f03d60422417c6627b2738d925544c427d1e5c358353fa",
+			"keccak256": "0x1294ae863c719861894f47e0c3c9dbe0395824e9f4ed01ba0c50812dbb4d00f0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://398992e8e44babb49e1f3d35a945ecdaba49c158579f73e28973aa79db264077",
-				"dweb:/ipfs/QmU1ayaJejJzboH9G3dNosr9caTCPyAPgoaBwK1k8VUvu6"
+				"bzz-raw://6304c336afb3047b98815a133a16308886a4ad401ff31ac2d2d48a5beff2b3e4",
+				"dweb:/ipfs/QmeBN3uysEWe1P8FxZ4BRxNFJHfioQLdwjzdE3A2mugYne"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {
