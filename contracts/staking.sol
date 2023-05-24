@@ -37,7 +37,15 @@ contract Staking{
     mapping (address => uint) private _rewardsWithdrawals;
     mapping (address => uint) private accBeforeUpdate;
 
+    address public owner;
+
     //modifiers
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "not authorized");
+        _;
+    }
+
 
 
     // contract methods
