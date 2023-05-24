@@ -109,11 +109,9 @@ contract Staking{
         _balance[msg.sender]["lockStakes"] = 1;
     }
 
-    // function withdrawStakes() external{
-    //     require()
-    //     require(stakeToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
-    //     _rewardsWithdrawals[msg.sender] += _amount;
-    // }
- 
-    
+    function withdrawStakes() external{
+        require(_balance[msg.sender]["amount"] > 0, "User does not have stakes in this pool");
+        require(stakingToken.transfer(msg.sender,_balance[msg.sender]["amount"]), "Failed to transfer tokens");
+        _balance[msg.sender]["amount"] = 0;
+    }
 }
