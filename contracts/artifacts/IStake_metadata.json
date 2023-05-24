@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.20+commit.a1b79de6"
 	},
 	"language": "Solidity",
 	"output": {
@@ -99,7 +99,7 @@
 		"compilationTarget": {
 			"contracts/staking.sol": "IStake"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -112,11 +112,11 @@
 	},
 	"sources": {
 		"contracts/staking.sol": {
-			"keccak256": "0xee68f8f817e4b21ec626f805f00a5b8c9dae21a42f8812fa2ca318bd76e88172",
+			"keccak256": "0x9e602dff015609ff7b09cc6f9102650a11645a9c750e0f2b0a8f7809f216149e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fee7c3e20d9605b3f9500e084caa5869e69c6314d3c147f192d785bbd638d7c5",
-				"dweb:/ipfs/QmdWhMDM1mw9TEXuoKUhX19SG8t9QhPzCRhDXUkW9EnRyn"
+				"bzz-raw://6d72ba51d21841f094211abb09fede7524a9b45297c5723de8f7a8a529506dea",
+				"dweb:/ipfs/QmXJXQyKaFsSNyMcHnFUWWN5GeKVL8FVwd1JeAacAQA8Qh"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol": {

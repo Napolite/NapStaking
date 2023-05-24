@@ -47,6 +47,7 @@ contract Staking{
     }
 
     function depositStake (uint amount) external {
+        require(duration > 0, ".No staking period yet");
         require(_balance[msg.sender]["lockStakes"] != 1, "This user canno longer deposit for this staking period");
         require(stakingToken.balanceOf(msg.sender) >= amount, "Not enough tokens for stake");
         require(stakingToken.transferFrom(msg.sender, address(this), amount),"Failed to stake token");
@@ -64,9 +65,15 @@ contract Staking{
         return _balance[msg.sender]["amount"];
     }
 
+    function setRewardRate(uint _rate) external {
+        require(finishAt < block.timestamp, "Staking still in progress");
+
+        rate = _rate;
+    }
+
     function setDuration(uint256 _duration) external{
         require(finishAt < block.timestamp, "can't set date to a previous timestamp");
-
+        require(rate > 0, "set reward rate before starting staking period");
         duration = _duration;
         finishAt = _duration.add(block.timestamp);
         updatedAt = block.timestamp;
@@ -76,16 +83,10 @@ contract Staking{
         return duration;
     }
 
-    function setRewardRate(uint256 _rate) external{
-        require(finishAt < block.timestamp, "Staking still in progress");
-
-        rate = _rate;
-    }
-
-    function earned() view private returns(uint256){
+    function earned() view public returns(uint256){
         require(_balance[msg.sender]["amount"] > 0, "You have not staked any tokens");
 
-        return (_balance[msg.sender]["amount"] * (rate/100) * (block.timestamp - _balance[msg.sender]["updatedAt"]));
+        return (_balance[msg.sender]["amount"] * rate * (block.timestamp - _balance[msg.sender]["updatedAt"]));
     }
 
     function calculateRewards() view public returns(uint256){
@@ -97,7 +98,7 @@ contract Staking{
     function withdrawReward(uint256 _amount) external{
         uint total = calculateRewards();
         require(total > 0 && _amount > 0, "You have not earned any rewards");
-        require(total - _rewardsWithdrawals[msg.sender] < _amount, "You don't have enough to withdraw");
+        require(total - _rewardsWithdrawals[msg.sender] > _amount, "You don't have enough to withdraw");
         require(rewardsToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
         _rewardsWithdrawals[msg.sender] += _amount;
     }
@@ -107,6 +108,12 @@ contract Staking{
 
         _balance[msg.sender]["lockStakes"] = 1;
     }
+
+    // function withdrawStakes() external{
+    //     require()
+    //     require(stakeToken.transfer(msg.sender, _amount), "Failed to transfer tokens");
+    //     _rewardsWithdrawals[msg.sender] += _amount;
+    // }
  
     
 }
