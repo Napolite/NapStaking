@@ -69,17 +69,18 @@ contract Staking{
         }
         totalStake = totalStake.add(amount);
     }
+    
     function balance() external view returns (uint256){
         return _balance[msg.sender]["amount"];
     }
 
-    function setRewardRate(uint _rate) external {
+    function setRewardRate(uint _rate) external onlyOwner{
         require(finishAt < block.timestamp, "Staking still in progress");
 
         rate = _rate;
     }
 
-    function setDuration(uint256 _duration) external{
+    function setDuration(uint256 _duration) external onlyOwner{
         require(finishAt < block.timestamp, "can't set date to a previous timestamp");
         require(rate > 0, "set reward rate before starting staking period");
         duration = _duration;
@@ -91,7 +92,7 @@ contract Staking{
         return duration;
     }
 
-    function earned() view public returns(uint256){
+    function earned() view private returns(uint256){
         require(_balance[msg.sender]["amount"] > 0, "You have not staked any tokens");
 
         return (_balance[msg.sender]["amount"] * rate * (block.timestamp - _balance[msg.sender]["updatedAt"]));
