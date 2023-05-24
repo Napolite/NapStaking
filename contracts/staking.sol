@@ -4,18 +4,6 @@ pragma solidity >=0.8.1 ;
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol";
 
-interface IStake{
-    function depositStake( uint amount) external;
-    function withdrawStake(uint amount) external;
-
-    function setDuration(uint duration) external;
-
-    function getTimeLeft() external view returns(uint256);
-
-    function calculateReward(uint amount) external;
-    function withdrawReward(uint amount) external;
-
-}
 
 contract Staking{
     using SafeMath for uint256;
@@ -69,7 +57,7 @@ contract Staking{
         }
         totalStake = totalStake.add(amount);
     }
-    
+
     function balance() external view returns (uint256){
         return _balance[msg.sender]["amount"];
     }
